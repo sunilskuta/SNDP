@@ -129,38 +129,48 @@
         <div class="flex gap-3 flex-wrap">
 
 
-<div class="p-4 bg-amber-50 rounded-lg border border-amber-200 max-w-md mx-auto">
+<div class="p-6 bg-white rounded-xl border-2 border-amber-400 max-w-md mx-auto shadow-sm hover:shadow-lg transition-all duration-300">
   <!-- Status Display -->
-  <div id="status" class="text-xs text-amber-700 font-medium mb-3 flex items-center gap-2">
-    <span id="statusIcon">⏸️</span>
-    <span id="statusText">Ready to play</span>
+  <div id="status" class="text-sm text-amber-800 font-semibold mb-4 flex items-center gap-2">
+    <span id="statusIcon">⏸️</span>   
+    <span id="statusText">Ready to play </span>  <div id="stopIcon" 
+     onclick="stopAudio()" 
+     title="STOP" 
+     class="hidden flex items-center justify-center w-12 h-6 bg-red-600 text-white text-xs font-semibold rounded-md shadow-md hover:bg-red-700 transition cursor-pointer">
+  STOP
+</div>
+
+
+
   </div>
-  
+
   <!-- Controls -->
   <div class="flex items-center gap-3">
     <button 
       id="playBtn" 
       onclick="toggleAudio()" 
-      class="flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-amber-400 to-yellow-400 text-amber-900 font-semibold shadow-md hover:shadow-lg transition-all">
+      class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-amber-400 bg-white text-amber-900 font-semibold hover:bg-amber-50 hover:shadow-lg transition-all duration-300">
       <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
         <path d="M8 5v14l11-7z"/>
       </svg>
-      <span id="btnText">Play Daivadasakam</span>
+      <span id="btnText">Daivadasakam</span>
     </button>
-    
-    <button 
+
+  <!--  <button 
       onclick="stopAudio()" 
-      class="p-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-600 hover:text-red-800 transition-colors">
+      class="p-3 rounded-xl border-2 border-red-300 bg-red-50 text-red-600 font-semibold hover:bg-red-100 hover:text-red-800 hover:shadow-lg transition-all duration-300">
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
         <path fill-rule="evenodd" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
+-->
   </div>
-  
+
   <audio id="anthemAudio" class="hidden">
     <source src="daivadasakam.mp3" type="audio/mpeg">
   </audio>
 </div>
+
 
 <script>
 let isPlaying = false;
@@ -190,19 +200,21 @@ function updateStatus() {
   const statusText = document.getElementById('statusText');
   const playIcon = document.getElementById('playIcon');
   const btnText = document.getElementById('btnText');
+  const stopIcon = document.getElementById('stopIcon');
   
   if (audio.paused) {
     isPlaying = false;
     statusIcon.textContent = '⏸️';
     statusText.textContent = 'Ready to play';
     playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
-    btnText.textContent = 'Play Daivadasakam';
+    btnText.textContent = 'Daivadasakam';
   } else {
     isPlaying = true;
     statusIcon.textContent = '▶️';
-    statusText.textContent = 'Playing Daivadasakam';
+    statusText.textContent = 'Playing';
     playIcon.innerHTML = '<path fill-rule="evenodd" d="M6 18L18 6M6 6l12 12"/>';
     btnText.textContent = 'Pause';
+    stopIcon.classList.remove('hidden');
   }
 }
 
@@ -438,7 +450,7 @@ document.getElementById('anthemAudio').addEventListener('ended', updateStatus);
   <footer class="mt-12 bg-gradient-to-r from-amber-100 via-yellow-100 to-orange-100 border-t-2 border-amber-300">
     <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-sm text-amber-900 font-semibold">© SNDP Kadakkal Union — <span id="year"></span></p>
-      <p class="text-sm text-amber-800" data-en="Designed for community use. Replace placeholder text and images with real content." data-ml="കമ്മ്യൂണിറ്റി ഉപയോഗത്തിനായി രൂപകൽപ്പന ചെയ്തിരിക്കുന്നു. യഥാർത്ഥ ഉള്ളടക്കം ഉപയോഗിച്ച് പ്ലെയ്‌സ്‌ഹോൾഡർ ടെക്സ്റ്റും ചിത്രങ്ങളും മാറ്റിസ്ഥാപിക്കുക.">Designed for community use. Replace placeholder text and images with real content.</p>
+      <p class="text-sm text-amber-800" data-en="Designed for community use." data-ml="കമ്മ്യൂണിറ്റി ഉപയോഗത്തിനായി രൂപകൽപ്പന ചെയ്തിരിക്കുന്നു.">Designed for community use.</p>
     </div>
   </footer>
 
